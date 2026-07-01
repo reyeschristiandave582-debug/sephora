@@ -26,15 +26,15 @@ export default function CTAButton() {
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleClick}
-        className="group relative w-[220px] sm:w-full h-[42px] sm:h-[54px] bg-[#576c1d] hover:bg-[#576c1d] text-white rounded-full flex items-center justify-center gap-2 shadow-[0_4px_15px_rgba(0,36,204,0.3)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] overflow-hidden no-underline"
+        className="group relative w-[220px] sm:w-full h-[42px] sm:h-[54px] bg-[#000001] hover:bg-[#000001] text-white rounded-full flex items-center justify-center gap-2 shadow-[0_4px_15px_rgba(0,36,204,0.3)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] overflow-hidden no-underline"
       >
         {/* Shine Animation Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -left-full group-hover:animate-shine pointer-events-none" />
 
         <div className="flex items-center gap-3 sm:gap-4 relative z-10">
           <Star 
-            className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-[#f1c40f] text-[#f1c40f] animate-pulse" 
-            style={{ filter: 'drop-shadow(0 0 2px rgba(250, 204, 21))' }}
+            className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-[#ffffff] text-[#ffffff] animate-pulse" 
+            style={{ filter: 'none' }}
           />
 
           <span className="text-[12px] sm:text-[14px] font-bold sm:font-white uppercase text-white tracking-[0.08em] flex items-center gap-1.5 sm:gap-2">
@@ -42,8 +42,8 @@ export default function CTAButton() {
           </span>
 
           <Star 
-            className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-[#f1c40f] text-[#f1c40f] animate-pulse" 
-            style={{ filter: 'drop-shadow(0 0 2px rgba(250, 204, 21))' }}
+            className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-[#ffffff] text-[#ffffff] animate-pulse" 
+            style={{ filter: 'none' }}
           />
         </div>
       </a>
