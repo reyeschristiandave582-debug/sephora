@@ -74,7 +74,7 @@ const AnnouncementBar = () => {
       </div>
 
       {/* Shimmering Bottom Border Accent */}
-      <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#000000] to-transparent w-full opacity-50 overflow-hidden">
+      <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#000001] to-transparent w-full opacity-50 overflow-hidden">
         <div className="absolute inset-0 bg-white/20 animate-shine"></div>
       </div>
     </div>
