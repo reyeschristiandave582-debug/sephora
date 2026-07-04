@@ -45,7 +45,7 @@ const HeroBranding = () => {
             <div className="relative z-10 w-[240px] sm:w-[320px] mx-auto transition-transform duration-500 group-hover:scale-105">
               <img 
                 src="https://i.imgur.com/kbdKkos.png" 
-                alt="T-Mobile $1000 Gift Card" 
+                alt="T-Mobile $750 Gift Card" 
                 className="w-full h-auto"
               />
               
