@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Lock, Sparkles, Check, ShieldCheck } from "lucide-react";
+import { Lock, Sparkles, Check, ShieldCheck, Clock } from "lucide-react";
 
 interface NotificationItem {
   name: string;
@@ -35,6 +35,24 @@ export default function AnnouncementBar() {
   const [currentNotif, setCurrentNotif] = useState<NotificationItem | null>(null);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
+  // 5-minute persistent countdown timer (300 seconds)
+  const [timeLeft, setTimeLeft] = useState<number>(300);
+
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+    const timerInterval = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timerInterval);
+  }, [timeLeft]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  };
+
   useEffect(() => {
     const showRandomNotif = () => {
       const randomIndex = Math.floor(Math.random() * notifications.length);
@@ -64,8 +82,8 @@ export default function AnnouncementBar() {
     <>
       {/* Top Banner Bar - Custom Dark Background with iOS Safe Area Padding & Security Badges */}
       <div 
-        className="sticky top-0 z-50 w-full bg-[#000001] border-b border-black/40 pb-2 px-3 sm:px-4 shadow-sm backdrop-blur-md"
-        style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 24px)" }}
+        className="sticky top-0 z-50 w-full bg-[#000001] border-b border-white/10 pb-2 px-3 sm:px-4 shadow-sm backdrop-blur-md"
+        style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 12px)" }}
       >
         {/* Background Sparkles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
@@ -80,24 +98,28 @@ export default function AnnouncementBar() {
         </div>
 
         {/* Content Stack */}
-        <div className="relative z-10 flex flex-col items-center justify-center max-w-xl mx-auto space-y-0.5">
-          {/* Headline */}
-          <div className="flex items-center justify-center gap-1 w-full text-center">
+        <div className="relative z-10 flex flex-col items-center justify-center max-w-xl mx-auto space-y-1">
+          {/* Headline with Live Timer */}
+          <div className="flex items-center justify-center gap-1.5 w-full text-center">
             <Lock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white shrink-0 -mt-0.5" strokeWidth={2.5} />
-            <p className="text-white text-[9px] xs:text-[10px] sm:text-[11px] font-bold tracking-tight leading-none">
-              256-Bit SSL Secured &bull; Over 1,400+ verified today
+            <p className="text-white text-[9.5px] xs:text-[10.5px] sm:text-[11.5px] font-bold tracking-tight leading-none flex items-center gap-1.5 flex-wrap justify-center">
+              <span>Your spot is reserved for:</span>
+              <span className="inline-flex items-center gap-1 bg-[#18181b] border border-white/20 text-white px-1.5 py-0.5 rounded font-mono text-[9px] xs:text-[10px] sm:text-[11px] font-bold shadow-sm">
+                <Clock className="w-2.5 h-2.5 text-white animate-pulse" />
+                <span>{formatTime(timeLeft)}</span>
+              </span>
             </p>
           </div>
 
           {/* Subtext Trust Badges */}
           <div className="flex items-center justify-center gap-1.5 text-white/90">
             <span className="text-[7.5px] xs:text-[8px] sm:text-[8.5px] uppercase tracking-wider font-semibold">
-              SECURE ELIGIBILITY CHECK
+              OVER 1,400+ VERIFIED TODAY
             </span>
             <span className="text-white/40 text-[7.5px]">&bull;</span>
             <div className="flex items-center gap-1 text-[7.5px] xs:text-[8px] sm:text-[8.5px] font-semibold text-white/95">
               <ShieldCheck className="w-2.5 h-2.5 text-emerald-300" strokeWidth={2.5} />
-              <span className="uppercase tracking-wider">PRIVACY PROTECTED</span>
+              <span className="uppercase tracking-wider">256-BIT SSL SECURED</span>
             </div>
           </div>
         </div>
